@@ -1,0 +1,71 @@
+Archive::Zip Object Model
+
+Overview
+--------
+
+    - Archive::Zip::Archive objects are what you ordinarily deal with.
+      These maintain the structure of a zip file, without necessarily holding data.
+
+    - When a zip is read from a disk file, the (possibly compressed) data
+      still lives in the file, not in memory.
+
+    - Archive members hold information about the individual members,
+      but not (usually) the actual member data.
+
+    - When the zip is written to a (different) file, the member data
+      is compressed or copied as needed.
+
+    - It is possible to make archive members whose data is held in a string in memory,
+      but this is not done when a zip file is read.
+
+    - Directory members don't have any data.
+
+
+Inheritance
+-----------
+
+  Exporter
+   Archive::Zip                            Common base class, has defs.
+       Archive::Zip::Archive               A Zip archive.
+       Archive::Zip::Member                Abstract superclass for all members.
+           Archive::Zip::StringMember      Member made from a string
+           Archive::Zip::DirectoryMember   Member that is a directory
+           Archive::Zip::FileMember        Member made from an external file
+               Archive::Zip::ZipFileMember Member that lives in a zip file
+               Archive::Zip::NewFileMember Member whose data is in a file
+
+Methods
+-------
+
+Archive::Zip class
+    - invisible subclass Archive::Zip::Archive
+
+    new:
+        - my $zip = Archive::Zip->new();
+          creates a new empty zip archive
+
+        - my $zip = Archive::Zip->new( 'xyz.zip' );
+          new() will call read() to read the existing 'xyz.zip' archive.
+
+    Utility
+        Archive::Zip::tempFile( [$tmpdir] )
+
+        - my $rc = $zip->tempFile( '/tmp/work' );
+
+    Zip Archive Accessors
+
+        - my @members = $zip->members();
+        - my @members = $zip->memberNames()
+        - my $nm      = $zip->numberOfMembers()
+        - my $comment = $zip->zipfileComment( [$string] );
+
+    Members
+        - my $rc = $zip->addFile( $fileName [, $newName ] )
+        - my $rc = $zip->addString( $stringOrStringRef  , $name )
+          my $rc = $zip->addString( $readmeTemplate     , 'readme.txt' )
+
+        - my $text = $zip->contents( 'bin/emp.ctl' );
+
+    I/O
+        - my $rc = $zip->writeToFileNamed( $fileName )
+        -
