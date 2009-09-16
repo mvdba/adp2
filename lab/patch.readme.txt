@@ -1,0 +1,50 @@
+5344791
+
+README for 5344791
+Patch Details
+
+Abstract
+ONE OFF REQUEST FOR BUG 5094221: 11.5.10.2:FIN_PF.F:AP.M
+
+Update  5344791
+Product     Payables
+Release     11i
+Platform    Generic Platform
+Built   JUL-20-2006 01:37:02
+
+Instructions
+
+This patch contains the following unified driver file to be applied with
+AutoPatch:
+    u5344791.drv (This is the unified driver)
+
+
+Description
+
+1)-Description
+       Old Behavior
+       -------------
+         The following error message is displayed incorrectly,even
+         when there is no overlap of documents:
+         "APP-SQLAP-10210: You have already used this range of
+         documents.Re-enter"
+       New Behavior
+       -------------
+         The error message will not be shown.
+2)-  Pre-requisite or Co-requisite which is not included with this patch:
+    None
+3.   Patch Applicable for versions/releases:
+       Patch must be applied over patchset 11i.AP.M and above
+4.   Dependent Applications:
+       None
+5.   Patch to be applied:
+     Server and Client
+6.   Patch applicable only when a particular application installed:
+      N/A
+7.   Pre-patch application steps
+       None
+8.   Post patch application steps
+      None
+9.   Successful patch installation checks:
+      Check the file versions , they have to be the same as given above.
+         forms/US/APXSUMBA.fmb 115.161

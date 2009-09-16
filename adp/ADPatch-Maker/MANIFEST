@@ -1,0 +1,16 @@
+Changes
+MANIFEST
+META.yml # Will be created by "make dist"
+Makefile.PL
+README
+lib/ADPatch/Build.pm
+lib/ADPatch/CGI.pm
+lib/ADPatch/DB.pm
+lib/ADPatch/Maker.pm
+lib/ADPatch/Member.pm
+lib/ADPatch/Member/Forms.pm
+lib/ADPatch/Utils.pm
+t/00-load.t
+t/boilerplate.t
+t/pod-coverage.t
+t/pod.t

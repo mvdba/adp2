@@ -1,0 +1,40 @@
+
+ADPatch::Maker
+ADPatch::Member
+ADPatch::Utils
+ADPatch::DB
+ADPatch::WWW
+
+
+ADPatch::Maker
+            new
+            summary
+            add_file
+            create
+            is_valid
+            credentials
+ADPatch::Member
+            add
+            patch_it
+            keep
+            bump
+
+ADPatch::Member::Text
+               ::Forms
+               ::Binary
+                    patch_it (polymorphic)
+
+ADPatch::Utils
+            parse_build
+            svn_info
+            rcs_info
+ADPatch::DB
+            create_patch
+            add_file
+ADPatch::CGI
+            upload_file
+ADPatch::Build
+            parse
+            parse_as_text
+            parse_as_list
+

@@ -1,0 +1,18 @@
+$Header: %f% %v% %d% %u% ship                                                             $
+
+FND_STANDARD.FORM_INFO('$Revision: 115.1 $', 'MDBOMCTRLDEVLIMIT', 'MDB','$Date: 2006/11/21 13:15:44  $', '$Author: appldev $');
+FND_STANDARD.FORM_INFO('$Revision: 115.1 $', 'MDBOMCTRLDEVLIMIT', 'MDB',
+                       '$Date: 2006/11/21 13:15:44  $', '$Author: appldev $');
+
+FND_STANDARD.FORM_INFO( '$Revision: 115.1 $'
+                      , 'MDBOMCTRLDEVLIMIT'
+                      , 'MDB'
+                      , '$Date: 2006/11/21 13:15:44  $'
+                      , '$Author: appldev $'
+                      );
+
+FND_STANDARD.FORM_INFO( '$Revision:: 115.12                    $:'
+                      , 'Template Form                           '
+                      , 'FND                                     '
+                      , '$Date:: 2003/12/19 11:02 -03:00       $:'
+                      , '$Author:: appldev                     $:');

@@ -1,0 +1,27 @@
+$Id: spec.txt 7531 2007-01-09 14:21:33Z marcus.ferreira $
+
+ADPMaker
+    ADPatch Maker: Oracle Applications ADPatch files Maker
+
+por
+    Marcus Vinicius Ferreira
+    Dezembro/2006
+
+
+Especificacoes
+--------------
+
+Criar arquivos de patch como um serviço. O cliente deve ter em mãos os arquivos dos quais deseja que façam parte de um patch e o sistema deve, a partir desses, gerar um arquivo de patch.
+
+Esse arquivo de patch deve conter:
+    - o script .drv para o utilitário adpatch
+    - um arquivo readme.txt com instrucoes de pre-req e pos-req
+    - os arquivos informados pelo cliente com a composição do controle
+      de versão para uso do utilitário adpatch.
+
+O sistema funcionará via web e terá um componente _client_ e outro _server_.
+
+O _client_ será o mais simples possível, responsável pelo upload dos arquivos e o download do arquivo de patch final, num único processo. Esse client deve ser rápido e será primeiramente um comando de linha.
+
+O _server_ será responsável pela inteligência do sistema. Receberá as requisições de patch e os arquivos correspondentes. Deverá compor os dados de versão para o controle de $Header$ de cada arquivo, gerar os comandos de instalação específicos no .drv final, criar o readme.txt. De todo esse resultado será feito um arquivo .zip e devolvido ao cliente.
+

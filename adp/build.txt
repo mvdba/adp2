@@ -1,0 +1,42 @@
+# $Id: build.txt 7531 2007-01-09 14:21:33Z marcus.ferreira $
+#
+
+meta {
+    who: Douglas E. Gouveia
+    when: 2006-11-09
+    title: Relatório Consolidado p/ Rota em Carteira ou Reservada
+}
+
+gap {
+    om451-1
+}
+
+base {
+    trunk/src/om
+}
+
+files {
+    rdf/MDB_OM_CONCARE.rdf
+    seed/MDB_OM_CONCARE_CCR.ldt
+    seed/MDB_OM_CONCARE_RQG.ldt
+    seed/MDB_OM_TIPO_ORDEM_VST.ldt
+}
+
+te020 {
+    MDB_TE020_OM451_cons_ped_carteira_v01_retorno.doc
+}
+
+pre-req {
+    - aplicação do patch de instalação MDB
+}
+
+pos-req {
+    - não há
+}
+
+email {
+
+Obs:
+    Esse patch é um AJUSTE TECNICO.
+
+}

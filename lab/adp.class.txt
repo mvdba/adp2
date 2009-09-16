@@ -1,0 +1,56 @@
+server
+    ip
+          www.adp.local
+        build.adp.local
+
+    cgi
+        accept_build.pl
+    www
+        form: submit zip
+        form: login
+        form: download
+
+client
+    ADP::Build
+        parse()
+    Compress:Zlib
+        new_zip()
+    lwp
+        $browser->post()
+
+
+
+    +-------------------+
+    | ADPatch           |
+    +-------------------+
+    | new               |
+    | archive_type      |
+    | download          |
+    | get_log           |
+    | create_udrv       |
+    | create_frmdrv     |
+    | create_readme     |
+    | create_zip        |
+    | dump_zip          |
+    +-------------------+
+    | is_present        | i.e, exists
+    | ver               |
+    | created           |
+    +-------------------+
+
+
+    +-------------------+
+    | ADPatch::File     |
+    +-------------------+
+    | set_header        |
+    | validate          |
+    |                   |
+    +-------------------+
+    | file_name         |
+    | file_type         |
+    | file_descr        |
+    | svnid
+    | rcsid
+    | author
+    | modified
+    +-------------------+

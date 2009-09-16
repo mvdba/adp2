@@ -1,0 +1,47 @@
+
+
+Persistencia
+
+    adpmaker_version_bump
+    adpmaker_history
+    adpmaker.cfg
+
+    ${CFG}/${FILE_DRV}="mdbfile.drv"
+    ${CFG}/${FILES_VERSION}="mdb_devfs_files_version.txt"
+    ${CFG}/${FILE_CFG}=adpmaker.conf
+
+Check
+
+    filename <= 30
+    files: $Header.... ship $
+    text: no tab, LF
+    ext: apenas as cadastradas
+
+Innards
+    update/commit $FILE_DRV
+                  $FILES_VERSION
+
+    parametros de .ini
+        fmb:      dir_dest
+        proj_top: dir
+
+    drv spec
+        ext => copy cmd
+               sql cmd
+
+    $FILE_DRV
+        array para seções:
+            "cabeçalho" de '#'
+            fmb
+            fmx
+            pll
+            rdf
+
+
+CommandLine
+
+    adpmaker -f adpmaker.cfg
+    adpmaker -g ar400 -v 1
+    adpmaker ar400.cfg
+
+

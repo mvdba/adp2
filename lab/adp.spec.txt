@@ -1,0 +1,46 @@
+
+    Noun :: Adjective :: Adjective
+
+    ADPatch::Maker
+    ADPatch::Maker::DB
+    ADPatch::Maker::DB::Text
+    ADPatch::Maker::DB::CSV
+    ADPatch::Maker::DB::SVN
+    ADPatch::Maker::DB::SQL
+    ADPatch::Maker::Item
+    ADPatch::Maker::Item::Binary
+    ADPatch::Maker::Driver
+    ADPatch::Maker::Driver::Universal
+    ADPatch::Maker::Driver::Copy
+    ADPatch::Maker::Driver::FileDRV
+
+    ADPatch::Maker
+                new
+                add_file
+                build
+                make_tree
+                make_zip
+                make_tar
+
+    ADPatch::Maker::Driver
+                make_driver
+                make_readme
+                make_filedrv
+
+    ADPatch::Maker::Definitions
+                %File_Type_of
+
+
+    ADPatch::Maker::DB
+                ins_patch
+                ins_file
+
+    ADPatch::Maker::Server::CGI
+                put_patch
+                put_file
+
+
+    ADPatch::Maker::PEX
+                bump_version
+                expand_header
+

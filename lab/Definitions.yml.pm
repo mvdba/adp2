@@ -1,0 +1,344 @@
+#!/usr/bin/perl
+# $Id$
+#
+# (c) Marcus Vinicius Ferreira  ferreira.mv[at]gmail.com
+# Nov/2006
+#
+#
+#
+
+package ADP::Definitions;
+
+use strict;
+
+use Exporter;
+use vars qw{@ISA @EXPORT @EXPORT_OK $VERSION};
+
+$VERSION   = 0.1;
+
+
+use Carp;
+use YAML;
+
+# Inside-out: private
+{
+    my $singleton;
+    my $hash_ref;
+    sub new {
+        my($class,
+        my $txt = ;
+        my $hash_ref = Load( do { local $/; <DATA> } );
+    }
+}
+
+sub get_desc {
+    my $ext = shift;
+    return $hash_ref->{$ext}->[0];
+}
+
+sub get_dir {
+    my $ext = shift;
+    return $hash_ref->{$ext}->[1];
+}
+
+sub get_exec {
+    my $ext = shift;
+    return $hash_ref->{$ext}->[2];
+}
+
+sub get_copy {
+    my $ext = shift;
+    return $hash_ref->{$ext}->[3] || $ref->{'def_ault'}->[3]
+}
+
+
+1;
+
+__DATA__
+#
+# $Id$
+#
+# ADP::Maker File Definitios
+#
+#
+#   file_extension:
+#       - description
+#       - $TOP destination dir
+#       - adpatch driver command
+#       - adpatch copy command
+#
+
+###
+### Flexfields
+###
+
+CCR.ldt :
+    - FND Concurrent
+    - admin/import
+    - exec fnd bin FNDLOAD bin &phase=dat+12 &ui_apps 0 Y UPLOAD @FND:patch/115/import/afcpprog.lct    @_cli_:_dir_/_file_
+
+DFF.ldt :
+    - FND Flexfield
+    - admin/import
+    - exec fnd bin FNDLOAD bin &phase=dat+11 &ui_apps 0 Y UPLOAD @FND:patch/115/import/afffload.lct    @_cli_:_dir_/_file_
+
+FP.ldt :
+    - Forms Personalization
+    - admin/import
+    - exec fnd bin FNDLOAD bin &phase=dat+11 &ui_apps 0 Y UPLOAD @FND:patch/115/import/affrmcus.lct    @_cli_:_dir_/_file_
+
+LKP.ldt :
+    - FND Lookup
+    - admin/import
+    - exec fnd bin FNDLOAD bin &phase=dat+11 &ui_apps 0 Y UPLOAD @FND:patch/115/import/aflvmlu.lct     @_cli_:_dir_/_file_
+
+QCD.ldt :
+    - FND QuickCodes
+    - admin/import
+    - exec fnd bin FNDLOAD bin &phase=dat+11 &ui_apps 0 Y UPLOAD @FND:patch/115/import/aflvmlu.lct     @_cli_:_dir_/_file_
+
+MNU.ldt :
+    - FND Menu
+    - admin/import
+    - exec fnd bin FNDLOAD bin &phase=dat+10 &ui_apps 0 Y UPLOAD @FND:patch/115/import/afsload.lct     @_cli_:_dir_/_file_
+
+MSG.ldt :
+    - FND Message
+    - admin/import
+    - exec fnd bin FNDLOAD bin &phase=dat+10 &ui_apps 0 Y UPLOAD @FND:patch/115/import/afmdmsg.lct     @_cli_:_dir_/_file_
+
+PRF.ldt :
+    - FND Profile
+    - admin/import
+    - exec fnd bin FNDLOAD bin &phase=dat+11 &ui_apps 0 Y UPLOAD @FND:patch/115/import/afscprof.lct    @_cli_:_dir_/_file_
+
+RG.ldt :
+    - FND Request Group
+    - admin/import
+    - exec fnd bin FNDLOAD bin &phase=dat+14 &ui_apps 0 Y UPLOAD @FND:patch/115/import/afcpreqg.lct    @_cli_:_dir_/_file_ %%
+
+RQG.ldt :
+    - FND Request Group
+    - admin/import
+    - exec fnd bin FNDLOAD bin &phase=dat+14 &ui_apps 0 Y UPLOAD @FND:patch/115/import/afcpreqg.lct    @_cli_:_dir_/_file_ %%
+
+RQS.ldt :
+    - FND Request Set
+    - admin/import
+    - exec fnd bin FNDLOAD bin &phase=dat+14 &ui_apps 0 Y UPLOAD @FND:patch/115/import/afcprset.lct    @_cli_:_dir_/_file_ %%
+
+VST.ldt :
+    - FND Value Set
+    - admin/import
+    - exec fnd bin FNDLOAD bin &phase=dat+11 &ui_apps 0 Y UPLOAD @FND:patch/115/import/afffload.lct    @_cli_:_dir_/_file_
+
+###
+### Scripts sql
+###
+
+col :
+    - Alter Table Column
+    - patch/115/sql
+    - sql      _cli_ _dir_ _file_ none none none sqlplus &phase=tbm+1  &un__cli_ &pw__cli_
+
+con :
+    - Constraint
+    - patch/115/sql
+    - sql      _cli_ _dir_ _file_ none none none sqlplus &phase=tab+10 &un__cli_ &pw__cli_ &index_tspace %%
+
+ddl :
+    - Alter DB Objects
+    - patch/115/sql
+    - sql      _cli_ _dir_ _file_ none none none sqlplus &phase=tbm+1  &un_apps &pw_apps
+
+grt :
+    - Grant
+    - patch/115/sql
+    - sql      _cli_ _dir_ _file_ none none none sqlplus &phase=os+2   &un__cli_ &pw__cli_ &un_apps %%
+
+ind :
+    - Index
+    - patch/115/sql
+    - sql      _cli_ _dir_ _file_ none none none sqlplus &phase=tbm+3  &un__cli_ &pw__cli_ &index_tspace %%
+
+seq :
+    - Sequence
+    - patch/115/sql
+    - sql      _cli_ _dir_ _file_ none none none sqlplus &phase=seq+1  &un__cli_ &pw__cli_ %%
+
+sql :
+    - SQL Script
+    - patch/115/sql
+    - sql      _cli_ _dir_ _file_ none none none sqlplus &phase=dat+10 &un_apps &pw_apps
+
+syn :
+    - Synonym
+    - patch/115/sql
+    - sql      _cli_ _dir_ _file_ none none none sqlplus &phase=os+3   &un_apps &pw_apps &un__cli_ %%
+
+tab :
+    - Table
+    - patch/115/sql
+    - sql      _cli_ _dir_ _file_ none none none sqlplus &phase=tab+1  &un__cli_ &pw__cli_ %%
+
+ttb :
+    - Temporary Table
+    - patch/115/sql
+    - sql      _cli_ _dir_ _file_ none none none sqlplus &phase=tab+1  &un__cli_ &pw__cli_
+
+vw :
+    - Views
+    - patch/115/sql
+    - sql      _cli_ _dir_ _file_ none none none sqlplus &phase=vw     &un_apps &pw_apps %%
+
+CCR.sql :
+    - SQL Concurrent
+    - patch/115/sql
+    - # noexec
+
+###
+### PL/SQL
+###
+
+PKB.pls :
+    - Package Body
+    - admin/sql
+    - sql      _cli_ _dir_ _file_ none none none package &phase=plb    &un_apps &pw_apps %%
+
+PKS.pls :
+    - Package Specification
+    - admin/sql
+    - sql      _cli_ _dir_ _file_ none none none package &phase=pls    &un_apps &pw_apps %%
+
+trg :
+    - Trigger
+    - admin/sql
+    - sql      _cli_ _dir_ _file_ none none none package &phase=pls    &un_apps &pw_apps
+
+###
+### Developer/2000
+###
+fmb :
+    - Forms
+    - forms/US
+    - genform  _cli_ _dir_ _file_ %%
+
+ogd :
+    - Graphics
+    - graphs/US
+    - genogd   _cli_ _dir_ _file_ %%
+
+pll :
+    - PLL: Forms
+    - resource
+    - genfpll  _cli_ _dir_ _file_ %%
+
+rdf :
+    - Reports
+    - reports/US
+    - genrep   _cli_ _dir_ _file_ %%
+
+rep.pll :
+    - PLL: Reports
+    - resource
+    - genrpll  _cli_ _dir_ _file_ %%
+
+ogd.pll :
+    - PLL: Graphics
+    - resource
+    - gengpll  _cli_ _dir_ _file_ %%
+
+mnu :
+    - Forms Menu
+    - admin/import
+    - genmenu  _cli_ _dir_ _file_ %%
+
+msg :
+    - Messages OracleAppl
+    - admin/import
+    - genmesg  _cli_ _dir_ _file_ %%
+
+###
+### ODF
+###
+
+odf.seq :
+    - Sequence via ODF
+    - patch/115/sql
+    - exec     _cli_ _dir_ _file_   odf &phase=seq mode=sequences
+
+odf.tab :
+    - Table    via ODF
+    - patch/115/sql
+    - exec     _cli_ _dir_ _file_   odf &phase=tab mode=tables
+
+odf.vw :
+    - View     via ODF
+    - patch/115/sql
+    - exec     _cli_ _dir_ _file_   odf &phase=vw  mode=views
+
+###
+### Applications
+###
+
+drv :
+    - Applications Driver
+    - admin/driver
+    - # noexec
+
+wft :
+    - Workflow
+    - admin/import
+    - exec fnd bin WFLOAD  bin &phase=dat+10 &ui_apps 0 Y FORCE @_cli_:_dir_/_file_
+
+eex :
+    - Discoverer
+    - discover/
+    - # noexec
+
+###
+### Patch Documents
+###
+
+txt :
+    - Text File
+    - ./
+    - #noexec
+    - NOCOPY
+
+doc :
+    - Document File
+    - ./
+    - # noexec
+    - NOCOPY
+
+pdf :
+    - PDF File
+    - ./
+    - # noexec
+    - NOCOPY
+
+###
+### Java components
+###
+
+java :
+    - Java
+    - _cli_/%jpn%
+    - # noexec
+    - copy     %jpn% _file_ _ver_
+
+xml :
+    - XML
+    - _cli_/%jpn%
+    - # noexec
+
+###
+### Default
+###
+
+def_ault :
+   - Default
+   - ./
+   - # noexec
+   - copy _cli_ _dir_ _file_ _ver_

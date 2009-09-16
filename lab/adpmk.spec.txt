@@ -1,0 +1,85 @@
+
+Patch
+-----
+    - é referente a um "gap" do sistema
+    - gap pode ser: instalar um módulo, corrigir um bug
+    - um gap é nomeado como módulo + número
+            ar205
+            wip407
+    - patch é nomeado como
+            ar205-1     patch 1 do ar205
+            wip407-3    patch 3 do wip407
+    - o arquivo de patch é ao final:
+        115MDBGWIP407_003.tar.gz
+
+    - Esse arquivo tar contem:
+        115MDBGWIP407_003
+            +- 115mdbgwip407_003.drv
+            +- mdbfile.drv
+            +- readme.txt
+            +- mdb/
+                +- admin/
+                +- import/
+                +- forms/
+                +- patch/
+                    +- 115/
+                        +- sql/
+
+    - cada tipo de arquivo do patch tem um dir de destino
+    - cada tipo de arquivo tem um comando q vai no script 115mdbgwip407_003.drv
+    - alguns tipos de arquivo precisam ter um script extra gerado: mdbfile.drv
+    - o nome da ferramenta que processa um patch é adpatch
+
+
+Classes
+
+    ADpatch::Patch
+        new()
+        make_udrv()
+        make_fdrv()
+        make_readme()
+        dump_tar()
+
+    ADPatch::File
+        add()
+        bump_version()
+        put_header()
+
+    ADPatch::DB
+    ADPatch::DB::SVN
+    ADPatch::DB::Text
+    ADPatch::DB::SQL
+
+
+
+Georges:
+    builder pattern
+    pb = PatternBuilder()
+    PatchBuilder()
+    pb.AddFile(file)
+    pb.AddFile()
+    pb.AddFile()
+
+    patch = pb.Builder()
+    patch.Apply()
+
+
+
+    o bulider faz o trabalho, o patch é só um holder e applier
+
+    XmlPatchBuilder, que le um xml pra montar o patch
+    YamlPatchBuilder
+
+
+    $p = ADPatch->new( gap => ar407, patch => 2 );
+
+    $p->debug(1);
+    $p->print_info();
+
+    while(<>) {
+        $p->addfile( $_ );
+    }
+
+    $p->create_tar();
+    $p->summary();
+
